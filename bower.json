@@ -1,0 +1,14 @@
+{
+  "name": "seminar.regexp",
+  "version": "0.0.1",
+  "authors": "soyelmnd <minhnd.it@gmail.com>",
+  "description": "Offspring digital dev-ketchup. Register to become an expert",
+  "keywords": [
+    "regexp",
+    "offspring"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "reveal.js": "~3.1.0"
+  }
+}

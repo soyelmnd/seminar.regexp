@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Regexp - REGister to become an EXPert</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="vendors/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="vendors/reveal.js/css/theme/night.css">
+    <link rel="stylesheet" href="vendors/reveal.js/lib/css/zenburn.css">
+    <link rel="stylesheet" href="vendors/reveal.js/css/print/pdf.css" media="print">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <!--[if lt IE 9]>
+    <script src="vendors/reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section id="heads-up">
+                <section>
+                    <h1>regexp</h1>
+                    <p class="fragment fade-in">
+                        REG<small>ister to become an </small>EXP<small>ert</small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>What's gonna happen then?</h2>
+                    <ul>
+                        <li class="fragment">The shorten regexp alphabet (~5 minutes)</li>
+                        <li class="fragment">Real practices (~55 minutes .. or depends)</li>
+                    </ul>
+                </section>
+            </section><!-- #heads-up -->
+
+            <section id="where-to-find">
+                <section>
+                    <h4>Regular expression in everyday tasks</h4>
+                    <ul>
+                        <li class="fragment fade-in">Text searching</li>
+                        <li class="fragment fade-in">Text validating</li>
+                        <li class="fragment fade-in">Text filtering</li>
+                        <li class="fragment fade-in">Text extracting</li>
+                        <li class="fragment fade-in">Text replacing</li>
+                        <li class="fragment fade-in">Text formatting</li>
+                        <li class="fragment fade-in">Text cleaning</li>
+                        <li class="fragment fade-in">Text playing</li>
+                        <li class="fragment fade-in">Text ...</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>Regular expression in everything</h4>
+                    <ul>
+                        <li class="fragment fade-in">Almost every IDE + powerful editor (Eclipse, Bracket, PHPStorm, Atom, VIM, Netbean, Notepad++, emacs, gedit ...)</li>
+                        <li class="fragment fade-in">Apache .htaccess</li>
+                        <li class="fragment fade-in">Linux sed, bashscript, sh</li>
+                        <li class="fragment">Windows PowerShell</li>
+                        <li class="fragment">...</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>Regular expression for developers</h4>
+                    <ul>
+                        <li class="fragment fade-in">Perl, PHP</li>
+                        <li class="fragment fade-in">C, C++</li>
+                        <li class="fragment fade-in">.NET</li>
+                        <li class="fragment fade-in">Java</li>
+                        <li class="fragment fade-in">Python</li>
+                        <li class="fragment fade-in">Ruby</li>
+                        <li class="fragment fade-in">MySQL</li>
+                        <li class="fragment fade-in">Javascript</li>
+                        <li class="fragment fade-in">...</li>
+                    </ul>
+                </section>
+            </section><!-- #where-to-find -->
+
+            <section id="lets-get-started">
+                <h1>Dive into </h1>
+                <p class="fragment">
+                    <small>
+                        Let's take a look at the 
+                        Javascript
+                        <a href="http://www.w3schools.com/jsref/jsref_obj_regexp.asp">RegExp</a>
+                        and
+                        <a href="http://www.w3schools.com/js/js_strings.asp">String</a>
+                        first ..
+                    </small>
+                </p>
+            </section><!-- #lets-get-started -->
+
+            <section id="alphabet-practice">
+                <section>
+                    <h2>Season 1</h2>
+                    <h4>Regexp alphabet</h4>
+                </section>
+
+                <section id="trimming-whitespace">
+                    <h3>Trimming whitespaces</h3>
+                    <pre>
+                        <code class="js" data-trim contenteditable="true">
+// Stripping whitespace 
+//   from the beginning 
+//   and the end of the string 
+var s = '  no-free-space Offspring Digital   '; // '  no-free-space Offspring Digital   '
+s.replace(/^ +/, '').replace(/ +$/, '');        //   'no-free-space Offspring Digital'
+s.replace(/^ +| +$/, '');                       //   'no-free-space Offspring Digital   '
+s.replace(/^ +| +$/g, '');                      //   'no-free-space Offspring Digital'
+s.replace(/^\s+|\s+$/g, '');                    //   'no-free-space Offspring Digital'
+                        </code>
+                    </pre>
+                </section><!-- #trimming-whitespaces -->
+
+                <section id="extension-validate">
+                    <h3>File extension filter</h3>
+                    <pre>
+                        <code class="js" data-trim contenteditable="true">
+// Is this file an image?
+// .. or ..
+// Does this filename
+//   end with the defined text?
+var file = 'this-is-an-image.png'
+  , rgx = /\.jpg$|\.png$|\.gif$/;
+file.match(rgx); // [".png"]
+                        </code>
+                    </pre>
+                </section><!-- #extension-validate -->
+
+                <section id="email-address">
+                    <h3>$_ email address validate</h3>
+                    <pre>
+                        <code class="js" data-trim contenteditable="true">
+// We need a regexp
+//   to validate email add
+var email = 'mr.john-doe@offspringdigital.com'
+  , rgx = ???;
+email.match(rgx); // ["mr.john-doe@offspringdigital.com"]
+                        </code>
+                    </pre>
+                    <ul>
+                        <li>{name}@{domain-name}.{domain-extension}</li>
+                        <li>... is case insensitive</li>
+                        <li>{name} starts with a alpha (ie. a-z)</li>
+                        <li>... followed by alphanumeric or . _ -</li>
+                        <li>... has at least 4 chars, at most 20 chars</li>
+                        <li>{domain-name} starts with alphanumeric (ie. a-z and 0-9)</li>
+                        <li>... then followed by alphanumeric or _ -</li>
+                        <li>... has at least 2 chars, at most 10 chars</li>
+                        <li>{domain-extension} is alpha only</li>
+                        <li>... and has at least 2 chars, at most 4 chars</li>
+                    </ul>
+
+                    <aside class="notes">
+<pre style="font-size:11px">
+var rgx = /^[a-zA-Z][a-zA-Z0-9._-]{3,19}@[a-zA-Z0-9][a-zA-Z0-9_-]{1,9}\.[a-zA-Z]{2,4}$/; // this is really just a translation
+var rgx = /^[a-z][a-z0-9._-]{3,19}@[a-z0-9][a-z0-9_-]{1,9}\.[a-z]{2,4}$/i;               // add a i modifier to shorten the regexp
+var rgx = /^[a-z][\w.-]{3,19}@[a-z0-9][\w-]{1,9}\.[a-z]{2,4}$/i;                         // since \w ~= [a-z0-9_], let's use it
+</pre>
+                    </aside>
+                </section><!-- #email-address -->
+
+                <section id="phone">
+                    <h3>$_ Australia phone number</h3>
+                    <a href="http://en.wikipedia.org/wiki/%2B61">http://en.wikipedia.org/wiki/%2B61</a>
+                    <pre>
+                        <code class="js" data-trim contenteditable="true">
+// We need a regexp
+//   to validate Au phone number
+var phone = '+61 0 2345 6789'
+  , rgx = ???;
+phone.match(rgx); // ["+61 0 2345 6789"]
+                        </code>
+                    </pre>
+                    <ul>
+                        <li>(0x)xxxxxxxx</li>
+                        <li>+61xxxxxxxxx</li>
+                        <li>x is a digit (0 - 9)</li>
+                        <li>Free whitespaces (all whitespaces are ignored)</li>
+                    </ul>
+
+                    <aside class="notes">
+<pre style="font-size:11px">
+var rgx = /^\s*\(0\s*\d\s*\)\s*\d\s*\d\s*\d\s*\d\s*\d\s*\d\s*\d\s*\d\s*$|^\s*\+6\s*1\s*\d\s*\d\s*\d\s*\d\s*\d\s*\d\s*\d\s*\d\s*\d\s*$/;
+var rgx = /^\s*\(0\s*\d\s*\)\s*(\d\s*){8}$|^\s*\+6\s*1\s*(\d\s*){9}$/;
+</pre>
+                    </aside>
+                </section><!-- #phone-address -->
+
+                <section id="duplicated-space">
+                    <h3>$_ remove duplicated spaces</h3>
+                    <pre>
+                        <code class="js" data-trim contenteditable="true">
+// We need a regexp
+//   to remove duplicated
+//   whitespaces
+var s = 'It has   a lot     spaces';    // 'It has   a lot     spaces'
+s.replace(???);                         // 'It has a lot spaces'
+                        </code>
+                    </pre>
+                    <ul>
+                        <li>Replace 2 or more continous spaces into only one space</li>
+                    </ul>
+
+                    <aside class="notes">
+<pre style="font-size:11px">
+s.replace(/ +/, ' ');    // just strip spaces, ignore tab, so we don't use \t
+s.replace(/ {1,}/, ' '); // this is identical to the above
+s.replace(/ {2,}/, ' '); // this is more optimal
+</pre>
+                    </aside>
+                </section><!-- #duplicated-space -->
+
+                <section id="nodejs-arg">
+                    <h3>$_ parse nodejs arguments</h3>
+                    <pre>
+                        <code class="js" data-trim contenteditable="true">
+// From terminal, we type
+$node app.js --first-name=john --last-name=doe
+                        </code>
+                    </pre>
+                    <pre>
+                        <code class="js" data-trim contenteditable="true">
+// This is the app.js file
+//   and we need a regexp
+//   to extract passed
+//   values from cli
+
+// This is the opts
+//   and it should accept cli arguments
+//   but in the snake-case (not the camelCase)
+var opts = {
+    firstName: 'offspring',
+    lastName: 'digital'
+};
+
+var arguments = system.argv; // ['--first-name=john', '--last-name=doe'];
+for(var optKey in opts) {
+    var rgx = ???;
+
+    // Let's search in the argument list
+    //   for an argument that
+    //   correspond to this optKey,
+    //   if any
+    for(var i in arguments) {
+        var argument = arguments[i];
+        var match = rgx.exec(argument);
+
+        // We've found it!
+        if(match) {
+            var value = ???;
+            opts[optKey] = value; // .. and save it to our opts
+            break; // .. then stop searching
+        }
+    }
+}
+
+console.log(opts); // {firstName: 'john', lastName: 'doe'}
+                        </code>
+                    </pre>
+
+                    <aside class="notes">
+<pre style="font-size:11px">
+var rgx = new RegExp('--' + optKey + '=(["\']?)(.+)\\1', 'g');
+..
+var value = match[2];
+</pre>
+                    </aside>
+                </section><!-- #nodejs-arg -->
+            </section><!-- #alphabet-practice -->
+
+            <section id="group-practice">
+                <section>
+                    <h2>Season 2</h2>
+                    <h4>Back-reference to a lazy &amp; greedy group</h4>
+                </section>
+
+                <section id="number-range">
+                    <h3>Number range</h3>
+                    <pre>
+                        <code class="js" data-trim contenteditable="true">
+// We need a regexp
+//   to validate that
+//   1979 &lt; x &lt; 1991
+var number = '1990'
+  , rgx = /^19(?:79|8[0-9]|9[01])$/;
+number.match(rgx); // ["1990"]
+                        </code>
+                    </pre>
+                </section><!-- #number-range -->
+
+                <section id="duplicated-word">
+                    <h3>Remove duplicated words</h3>
+                    <pre>
+                        <code class="js" data-trim contenteditable="true">
+// So we don't need duplicated words
+var s = 'A duplicated duplicated duplicated word';
+s.replace(/(.+?\b)\1+/g, '$1'); // "A duplicated word"
+                        </code>
+                    </pre>
+                </section><!-- #duplicated-word -->
+
+                <section id="ip-address">
+                    <h3>$_ ip address</h3>
+                    <a href="http://en.wikipedia.org/wiki/IP_address">http://en.wikipedia.org/wiki/IP_address</a>
+                    <pre>
+                        <code class="js" data-trim contenteditable="true">
+// We need a regexp
+//   to validate an ip address
+var ip = '192.168.0.102';
+var rgx = ???;
+rgx.match(ip); // ["192.168.0.102"]
+                        </code>
+                    </pre>
+                    <ul>
+                        <li>x.x.x.x</li>
+                        <li>x is a number from 0 - 255</li>
+                        <li>0, 00, 000 are all accepted</li>
+                    </ul>
+
+                    <aside class="notes">
+<pre style="font-size:11px">
+// Let's break the x down:
+// x ~= (0-255) ~= (0-9) | (10-99) | (100-199) | (200-249) | (250-255)
+// Translate it into regexp language (not that padding is accepted)
+// 0{0,2}\d|0?\d{2}|1\d{2}|2[0-4]\d|25[0-5]
+var rgx = /^0{0,2}\d|0?\d{2}|1\d{2}|2[0-4]\d|25[0-5]\.0{0,2}\d|0?\d{2}|1\d{2}|2[0-4]\d|25[0-5]\.0{0,2}\d|0?\d{2}|1\d{2}|2[0-4]\d|25[0-5]\.0{0,2}\d|0?\d{2}|1\d{2}|2[0-4]\d|25[0-5]$/
+</pre>
+                    </aside>
+                </section><!-- #ip-address -->
+
+                <section id="trim-duplicated-space">
+                    <h3>$_ remove duplicated spaces + trim</h3>
+                    <pre>
+                        <code class="js" data-trim contenteditable="true">
+// We need a regexp
+//   to remove duplicated whitespaces
+//   as well as trim it
+var s = '    It has   a lot     spaces   ';    // '    It has   a lot     spaces    '
+s.replace(???);                                // 'It has a lot spaces'
+                        </code>
+                    </pre>
+                    <ul>
+                        <li>Replace all spaces at the beginning and the end of the string</li>
+                        <li>Replace 2 or more continous spaces into only one space</li>
+                    </ul>
+
+                    <aside class="notes">
+<pre style="font-size:11px">
+s.replace(/^ +| +$|( ) +/g, '$1'); // We're talking about space, not tab, so we don't use \s
+</pre>
+                    </aside>
+                </section><!-- #trim-duplicated-space -->
+
+                <section id="linkify">
+                    <h3>$_ linkify</h3>
+                    <pre>
+                        <code class="js" data-trim contenteditable="true">
+// We need 2 regexp,
+//   one for link
+//   one for username,
+//   and their replacements
+var text = 'We have a http://google.com?q=linkify link from @offspring';
+var rgxLink = ???
+  , replaceLink = ???
+  , rgxTwitterUsername = ???
+  , replaceTwitterUsername = ???;
+
+text
+.replace(rgxLink, replaceLink)
+.replace(rgxTwitterUsername, replaceTwitterUsername);
+// We have a <a href="http://google.com?q=linkify">http://google.com?q=linkify</a> link from <a href="http://twitter.com/offspring">@offspring</a>
+                        </code>
+                    </pre>
+
+                    <ul>
+                        <li>A link starts with http:// or https://</li>
+                        <li>A link ends before a space, or EOL</li>
+                        <li>A twitter username starts right after the letter @</li>
+                        <li>A twitter username ends before a space, or EOL</li>
+                    </ul>
+
+                    <aside class="notes">
+                        Hmm .. there should be an answer for this, but nope. Try it your self, I know you can do it (y)
+                    </aside>
+                </section><!-- #linkify -->
+            </section><!-- #group-practice -->
+
+            <section id="lookaround-practice">
+                <section>
+                    <h2>Season 3</h2>
+                    <h4>Look around</h4>
+                </section>
+
+                <section id="mailinator-barrier">
+                    <h3>Mailinator email barrier</h3>
+                    <small>
+                        <a href="http://non-existed.mailinator.com">here's the non-existed@mailinator.com mailbox</a>
+                    </small>
+                    <pre>
+                        <code class="js" data-trim contenteditable="true">
+// We're gonna make
+//   a simple temp email barrier
+var wrongEmail = 'non-existed@mailinator.com'
+  , rightEmail = 'john.doe@gmail.com';
+
+// Since we've already had the email validate regexp,
+//   so let's assume that we're gonna reuse it here,
+//   and add just a tiny change to the domain name part
+var rgx = /^.+?@(?!mailinator|reallymymail).+?\..+$/;
+wrongEmail.test(rgx); // false
+rightEmail.test(rgx); // true
+                        </code>
+                    </pre>
+                </section><!-- #mailinator-barrier -->
+
+                <section id="extension-barrier">
+                    <h3>$_ file extension barrier</h3>
+                    <pre>
+                        <code class="js" data-trim contenteditable="true">
+// We're gonna accept every files
+//   except images (jpg, png, gif)
+// .. or ..
+// The filename could end with anything
+//   except .jpg, .png, .gif
+var file = 'this-is-an-image.png'
+  , rgx = ???;
+file.match(rgx); // null
+                        </code>
+                    </pre>
+
+                    <aside class="notes">
+<pre style="font-size:11px">
+var rgx = /\.(?!jpg$|png$|gif$)/;
+</pre>
+                    </aside>
+                </section><!-- #extension-barrier -->
+
+                <section id="ie-comment">
+                    <h3>$_ clean HTML comment</h3>
+                    <a href="http://www.quirksmode.org/css/condcom.html">http://www.quirksmode.org/css/condcom.html</a>
+                    <pre>
+                        <code class="js" data-trim contenteditable="true">
+// Strip every html comment
+//   except IE comment
+var html = '...';   // The source of an html file
+html.replace(???);  // Striped comment HTML content
+                        </code>
+                    </pre>
+                    <ul>
+                        <li>An IE conditional comment could not be stripped</li>
+                        <li>An IE comment starts with &lt;!--</li>
+                        <li>.. followed by if IE, if lt IE8, if gte IE9 .. </li>
+                        <li>An IE comment ends with --&gt; </li>
+                    </ul>
+
+                    <aside class="notes">
+<pre style="font-size:11px">
+html.replace(/&lt;!--\s*(?!\[if\s+(lte?\s+|gte?\s+)?\s*IE).*--&gt;/gmi, '');
+</pre>
+                    </aside>
+                </section><!-- #ie-comment -->
+            </section><!-- #group-practice -->
+
+            <section id="bonus">
+                <section>
+                    <h1>A few bonus .. </h1>
+                </section>
+
+                <section>
+                    <h2>Wanna play?</h2>
+                    <ul>
+                        <li class="fragment">
+                            <a href="http://callumacrae.github.io/regex-tuesday/">http://callumacrae.github.io/regex-tuesday/</a>
+                        </li>
+                        <li class="fragment">
+                            <a href="http://regexcrossword.com/">http://regexcrossword.com/</a>
+                        </li>
+                        <li class="fragment">
+                            <a href="https://regex.alf.nu/">https://regex.alf.nu/</a>
+                        </li>
+                        <li class="fragment">
+                            <a href="https://www.wechall.net/challenge/training/regex/">https://www.wechall.net/challenge/training/regex/</a>
+                        </li>
+                        <li class="fragment">
+                            <a href="http://google.com">http://google.com</a>
+                        </li>
+                        <li class="fragment">
+                            ...
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Wanna try?</h2>
+                    <ul>
+                        <li class="fragment">
+                            <a href="http://www.regexper.com/">http://www.regexper.com/</a>
+                        </li>
+                        <li class="fragment">
+                            <a href="http://regex101.com/">http://regex101.com/</a>
+                        </li>
+                        <li class="fragment">
+                            <a href="https://www.debuggex.com/">https://www.debuggex.com/</a>
+                        </li>
+                        <li class="fragment">
+                            <a href="http://google.com">http://google.com</a>
+                        </li>
+                        <li class="fragment">
+                            ...
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Wanna be a regexp guru?</h2>
+                    <ul>
+                        <li class="fragment">
+                            <a href="http://www.amazon.com/Mastering-Regular-Expressions-Jeffrey-Friedl/dp/0596528124">Mastering Regular Expressions, Jeffrey Friedl</a>
+                            <small>
+                                or visit his blog for some beautiful photos
+                                <a href="http://regex.info/blog/">http://regex.info/blog/</a>
+                            </small>
+                        </li>
+                        <li class="fragment">
+                            <a href="http://www.regular-expressions.info/">http://www.regular-expressions.info/</a>
+                        </li>
+                        <li class="fragment">
+                            <a href="http://www.rexegg.com/">http://www.rexegg.com/</a>
+                        </li>
+                        <li class="fragment">
+                            <a href="http://www.regexbuddy.com/">http://www.regexbuddy.com/</a>
+                        </li>
+                        <li class="fragment">
+                            <a href="http://google.com">http://google.com</a>
+                        </li>
+                        <li class="fragment">
+                            ...
+                        </li>
+                    </ul>
+                </section>
+            </section><!-- #bonus -->
+
+            <section id="the-end">
+                <h1>Thanks for sitting</h1>
+                <p class="fragment">
+                    <small>Should you have any question, <br />feel free to ask <a href="http://google.com">Google</a></small>
+                </p>
+            </section><!-- #the-end -->
+
+            <section id="what-else">
+                <h2>What else?</h2>
+                <p>
+                    <small class="fragment">Hmm .. nope.</small>
+                    <small class="fragment">Have a good evening, by the way!</small>
+                    <small class="fragment">And if you've suddenly become another RegExp lover ..</small>
+                    <small class="fragment">feel free to drop me a joke at <a href="mailto:minhnd.it@gmail.com">minhnd.it@gmail.com</a></small>
+                </p>
+            </section><!-- #after-the-end -->
+        </div><!-- .slides -->
+    </div><!-- .reveal -->
+
+    <div class="cheatsheet">
+        <div class="toggle">
+            <span>cheat sheet</span>
+        </div>
+        <div class="inner">
+            <table class="table character-class">
+                <thead>
+                    <tr><th colspan="2">Character classes</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>[abc]</td><td><em>a</em> or <em>b</em> or <em>c</em></td></tr>
+                    <tr><td>[o-s]</td><td>one of the characters in the range from <em>o</em> to <em>s</em> or <em>c</em></td></tr>
+                    <tr><td>[^a]</td><td>one character that is not <em>a</em></td></tr>
+                    <tr><td>[^o-s]</td><td>one character that is not in the range from <em>o</em> to <em>s</em></td></tr>
+                </tbody>
+            </table><!-- .character-class -->
+            <table class="table character">
+                <thead>
+                    <tr><th colspan="2">Characters</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>\d</td><td>digit (equals to [0-9] )</td></tr>
+                    <tr><td>\w</td><td>word (equals to [a-zA-Z0-9_])</td></tr>
+                    <tr><td>\s</td><td>whitespace (equals to [ \t\r])</td></tr>
+                    <tr><td>.</td><td>any character except \n</td></tr>
+                    <tr><td>\</td><td>escape a special char</td></tr>
+                </tbody>
+            </table><!-- .character -->
+            <table class="table quantifier">
+                <thead>
+                    <tr><th colspan="2">Quantifier</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>*</td><td>0 or more (greedy)</td></tr>
+                    <tr><td>+</td><td>1 or more (greedy)</td></tr>
+                    <tr><td>?</td><td>0 or 1</td></tr>
+                    <tr><td>{3, 7}</td><td>3 to 7 times</td></tr>
+                    <tr><td>*?</td><td>0 or more (lazy ~ non-greedy)</td></tr>
+                    <tr><td>+?</td><td>1 or more (lazy ~ non-greedy)</td></tr>
+                </tbody>
+            </table><!-- .quantifier -->
+            <table class="table anchor">
+                <thead>
+                    <tr><th colspan="2">Anchors &amp; boundaries</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>^</td><td>start of line/string</td></tr>
+                    <tr><td>$</td><td>end of line/string</td></tr>
+                    <tr><td>\b</td><td>word boundary (position with \w on oneside only)</td></tr>
+                </tbody>
+            </table><!-- .anchor -->
+            <table class="table logic">
+                <thead><tr><th colspan="2">Logic</th></tr></thead>
+                <tbody>
+                    <tr><td>|</td><td>OR</td></tr>
+                    <tr><td>()</td><td>capturing group</td></tr>
+                    <tr><td>(?:)</td><td>non-capturing group</td></tr>
+                </tbody>
+            </table><!-- .logic -->
+            <table class="table look-around">
+                <thead>
+                    <tr><th colspan="2">Look around</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>?=</td><td>look ahead</td></tr>
+                    <tr><td>?!</td><td>negative look ahead</td></tr>
+                </tbody>
+            </table><!-- .logic -->
+            <table class="table modifier odd">
+                <thead>
+                    <tr><th colspan="2">Modifier</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>g</td><td>global</td></tr>
+                    <tr><td>i</td><td>case insensitive</td></tr>
+                    <tr><td>m</td><td>the . (dot) matchs multiple lines</td></tr>
+                </tbody>
+            </table><!-- .logic -->
+            <table class="table replacement odd">
+                <thead>
+                    <tr><th colspan="2">String replacement</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>$n</td><td>n-th captured group</td></tr>
+                    <tr><td>$&amp;</td><td>entire matched string</td></tr>
+                </tbody>
+            </table><!-- .logic -->
+        </div>
+    </div><!-- .cheatsheet -->
+    <script src="vendors/reveal.js/lib/js/head.min.js"></script>
+    <script src="vendors/reveal.js/js/reveal.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
