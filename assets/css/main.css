@@ -1,0 +1,96 @@
+.cheatsheet {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: block;
+    width: 25%;
+    height: 100%;
+    font-size: 11px;
+    background: #000;
+    color: #e7ad52;
+
+    -webkit-transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+
+    -webkit-transform: translate(-100%, 0);
+    -moz-transform: translate(-100%, 0);
+    -ms-transform: translate(-100%, 0);
+    -o-transform: translate(-100%, 0);
+    transform: translate(-100%, 0);
+}
+.cheatsheet:hover {
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+}
+.cheatsheet .toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #e7ad52;
+    color: #000;
+    font-size: 8px;
+    padding: 2px 5px 4px;
+    cursor: pointer;
+    opacity: 0.5;
+
+    -webkit-border-radius: 0 0 2px 2px;
+    -moz-border-radius: 0 0 2px 2px;
+    border-radius: 0 0 2px 2px;
+
+    -webkit-transform-origin: 100% 0;
+    -moz-transform-origin: 100% 0;
+    -ms-transform-origin: 100% 0;
+    -o-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    
+    -webkit-transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+}
+.cheatsheet:hover .toggle {
+    opacity: 1;
+}
+.cheatsheet .inner {
+    height: 100%;
+    overflow: auto;
+}
+.cheatsheet .table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.cheatsheet .table+.table {
+    margin-top: -1px;
+}
+.cheatsheet .table th {
+    font-weight: 700;
+    text-align: left;
+    text-transform: uppercase;
+}
+.cheatsheet .table.odd th {
+    background: #e7ad52;
+    color: #000;
+}
+.cheatsheet .table th,
+.cheatsheet .table td {
+    border: 1px solid #e7ad52;
+    padding: 8px 10px;
+}
+.cheatsheet .table td:first-child {
+    color: #fff;
+    width: 20%;
+}
